@@ -25,8 +25,6 @@ import { UserModule } from './modules/user/user.module';
       provide: APP_GUARD,
       useClass: AuthorizedAccess
     }
-  
-  
   ],
 })
 export class AppModule {}

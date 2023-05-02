@@ -1,7 +1,10 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Authorized } from '../auth/decorators/roles.decorator';
 import { Role } from '../auth/enums/role.enum';
 import { ICOService } from './ico.service';
+import { multerOptions } from '../../multerConfig';
+import { SettingDTO } from './ico.dto';
 
 @Controller("ico")
 export class ICOController {
@@ -23,5 +26,22 @@ export class ICOController {
   @Post("balance/collect")
   collectAmount(): string {
     return this.icoService.collectBalance();
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file', multerOptions))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
+    return `/uploads/${file.filename}`;
+  }
+
+  @Post("setting")
+  saveSetting(@Body() setting: any) {
+    return this.icoService.saveSetting(setting);
+  }
+
+  @Get("setting")
+  getSetting() {
+    return this.icoService.getSetting();
   }
 }

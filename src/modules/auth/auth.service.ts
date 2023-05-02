@@ -15,7 +15,7 @@ export class AuthService {
     private jwtService: JwtService,
     @InjectRepository(Auth)
     private authRepository: Repository<Auth>,
-    @Inject(UserService) 
+    @Inject(UserService)
     private readonly userService: UserService
   ) { }
 
@@ -40,7 +40,7 @@ export class AuthService {
         _id: new ObjectID(challengeId)
       },
     });
-  
+
     if (challenge) {
       const { wallet, signChallenge } = challenge;
       console.log("authVerify: ",wallet)

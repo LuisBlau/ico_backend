@@ -10,10 +10,10 @@ export class Auth {
 
   @Column()
   signChallenge: string;
-  
+
   @Column({ type: 'timestamptz' })
   createdAt: Date;
-  
+
   // @Column()
   // status: number;
 

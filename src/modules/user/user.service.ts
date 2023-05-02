@@ -22,5 +22,4 @@ export class UserService {
     if(user)return true;
     return false;
   }
-  
 }
