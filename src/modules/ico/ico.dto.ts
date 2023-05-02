@@ -16,4 +16,5 @@ export class SettingDTO {
     team: SectionInfo;
     subscribe: SectionInfo;
     contact: SectionInfo;
+    main: SectionInfo;
 }

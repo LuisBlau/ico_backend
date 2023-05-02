@@ -43,4 +43,7 @@ export class Setting {
 
   @Column((type) => SectionInfo)
   contact: SectionInfo;
+
+  @Column((type) => SectionInfo)
+  main: SectionInfo;
 }

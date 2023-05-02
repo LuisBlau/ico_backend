@@ -77,6 +77,11 @@ export class ICOService {
             "title" : "Contact us",
             "subtitle" : "Contact With Us",
             "detail" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisi Ut ut felis congue nisl hendrerit commodo."
+        },
+        "main": {
+          "title" : "Initial Coin Offering",
+          "subtitle" : "Crypto ICO Project",
+          "detail" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolorem blanditiis ad perferendis, labore delectus dolor sit amet, adipisicing elit. "
         }
       }
     }
