@@ -119,4 +119,29 @@ export class ICOController {
   deleteRoadmapSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteRoadmapSectionInfo(id);
   }
+
+  @Get("sections/faq")
+  getFaqSectionInfo() {
+    return this.icoService.getFaqSectionInfo();
+  }
+
+  @Post("sections/faq")
+  addFaqSectionInfo(@Body() payload: any) {
+    return this.icoService.addFaqSectionInfo(payload);
+  }
+
+  @Put("sections/faq/:id")
+  async updateFaqSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateFaqSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/faq/:id")
+  deleteFaqSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteFaqSectionInfo(id);
+  }
 }

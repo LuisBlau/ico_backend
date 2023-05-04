@@ -9,13 +9,15 @@ import {SettingDTO} from './ico.dto';
 import { HowSectionInfo } from './entities/howsectioninfo.entity';
 import { TeamSectionInfo } from './entities/teamsectioninfo.entity';
 import { RoadmapSectionInfo } from './entities/roadmapsectioninfo.entity';
+import { FaqSectionInfo } from './entities/faqsectioninfo.entity';
 @Injectable()
 export class ICOService {
   constructor(
     @InjectRepository(Setting) private settingRepository: Repository<Setting>,
     @InjectRepository(HowSectionInfo) private howSectionRepository: Repository<HowSectionInfo>,
     @InjectRepository(TeamSectionInfo) private teamSectionRepository: Repository<TeamSectionInfo>,
-    @InjectRepository(RoadmapSectionInfo) private roadmapSectionRepository: Repository<RoadmapSectionInfo>
+    @InjectRepository(RoadmapSectionInfo) private roadmapSectionRepository: Repository<RoadmapSectionInfo>,
+    @InjectRepository(FaqSectionInfo) private faqSectionRepository: Repository<FaqSectionInfo>
   ) {
 
   }
@@ -195,6 +197,37 @@ export class ICOService {
 
   async deleteRoadmapSectionInfo(id: string) {
     let result = await this.roadmapSectionRepository.delete(new ObjectID(id));
+    console.log(id);
+    return result;
+  }
+
+  async getFaqSectionInfo() {
+    let documents = await this.faqSectionRepository.find({});
+    return documents;
+  }
+
+  async addFaqSectionInfo(payload: any) {
+    const res = await this.faqSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateFaqSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.faqSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.faqSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteFaqSectionInfo(id: string) {
+    let result = await this.faqSectionRepository.delete(new ObjectID(id));
     console.log(id);
     return result;
   }
