@@ -6,14 +6,17 @@ export class ContactSectionInfo {
   _id?: ObjectID;
 
   @Column()
-  ClassUp: string;
+  css: string;
 
   @Column()
-  nameInput: string;
+  field: string;
 
   @Column()
-  title: string;
+  display: string;
 
   @Column()
-  addTextArea: boolean;
+  isMultiline: boolean;
+
+  @Column()
+  num: number;
 }
