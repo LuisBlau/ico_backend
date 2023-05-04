@@ -10,6 +10,7 @@ import { HowSectionInfo } from './entities/howsectioninfo.entity';
 import { TeamSectionInfo } from './entities/teamsectioninfo.entity';
 import { RoadmapSectionInfo } from './entities/roadmapsectioninfo.entity';
 import { FaqSectionInfo } from './entities/faqsectioninfo.entity';
+import { ContactSectionInfo } from './entities/contactsectioninfo.entity';
 @Injectable()
 export class ICOService {
   constructor(
@@ -17,7 +18,8 @@ export class ICOService {
     @InjectRepository(HowSectionInfo) private howSectionRepository: Repository<HowSectionInfo>,
     @InjectRepository(TeamSectionInfo) private teamSectionRepository: Repository<TeamSectionInfo>,
     @InjectRepository(RoadmapSectionInfo) private roadmapSectionRepository: Repository<RoadmapSectionInfo>,
-    @InjectRepository(FaqSectionInfo) private faqSectionRepository: Repository<FaqSectionInfo>
+    @InjectRepository(FaqSectionInfo) private faqSectionRepository: Repository<FaqSectionInfo>,
+    @InjectRepository(ContactSectionInfo) private contactSectionRepository: Repository<ContactSectionInfo>
   ) {
 
   }
@@ -228,6 +230,37 @@ export class ICOService {
 
   async deleteFaqSectionInfo(id: string) {
     let result = await this.faqSectionRepository.delete(new ObjectID(id));
+    console.log(id);
+    return result;
+  }
+
+  async getContactSectionInfo() {
+    let documents = await this.contactSectionRepository.find({});
+    return documents;
+  }
+
+  async addContactSectionInfo(payload: any) {
+    const res = await this.contactSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateContactSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.contactSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.contactSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteContactSectionInfo(id: string) {
+    let result = await this.contactSectionRepository.delete(new ObjectID(id));
     console.log(id);
     return result;
   }

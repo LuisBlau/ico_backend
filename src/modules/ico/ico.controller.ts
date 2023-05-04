@@ -144,4 +144,29 @@ export class ICOController {
   deleteFaqSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteFaqSectionInfo(id);
   }
+
+  @Get("sections/contact")
+  getContactSectionInfo() {
+    return this.icoService.getContactSectionInfo();
+  }
+
+  @Post("sections/contact")
+  addContactSectionInfo(@Body() payload: any) {
+    return this.icoService.addContactSectionInfo(payload);
+  }
+
+  @Put("sections/contact/:id")
+  async updateContactSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateContactSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/contact/:id")
+  deleteContactSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteContactSectionInfo(id);
+  }
 }
