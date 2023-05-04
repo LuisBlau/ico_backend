@@ -8,6 +8,7 @@ import { HowSectionInfo } from './entities/howsectioninfo.entity';
 import { RoadmapSectionInfo } from './entities/roadmapsectioninfo.entity';
 import { Setting } from './entities/setting.entity';
 import { TeamSectionInfo } from './entities/teamsectioninfo.entity';
+import { TokenSectionInfo } from './entities/tokensectioninfo.entity';
 import { ICOController } from './ico.controller';
 import { ICOService } from './ico.service';
 
@@ -20,6 +21,7 @@ import { ICOService } from './ico.service';
     TypeOrmModule.forFeature([RoadmapSectionInfo]),
     TypeOrmModule.forFeature([FaqSectionInfo]),
     TypeOrmModule.forFeature([ContactSectionInfo]),
+    TypeOrmModule.forFeature([TokenSectionInfo]),
   ],
   controllers: [ICOController],
   providers: [

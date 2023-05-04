@@ -169,4 +169,29 @@ export class ICOController {
   deleteContactSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteContactSectionInfo(id);
   }
+
+  @Get("sections/token")
+  getTokenSectionInfo() {
+    return this.icoService.getTokenSectionInfo();
+  }
+
+  @Post("sections/token")
+  addTokenSectionInfo(@Body() payload: any) {
+    return this.icoService.addTokenSectionInfo(payload);
+  }
+
+  @Put("sections/token/:id")
+  async updateTokenSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateTokenSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/token/:id")
+  deleteTokenSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteTokenSectionInfo(id);
+  }
 }

@@ -11,6 +11,7 @@ import { TeamSectionInfo } from './entities/teamsectioninfo.entity';
 import { RoadmapSectionInfo } from './entities/roadmapsectioninfo.entity';
 import { FaqSectionInfo } from './entities/faqsectioninfo.entity';
 import { ContactSectionInfo } from './entities/contactsectioninfo.entity';
+import { TokenSectionInfo } from './entities/tokensectioninfo.entity';
 @Injectable()
 export class ICOService {
   constructor(
@@ -19,7 +20,8 @@ export class ICOService {
     @InjectRepository(TeamSectionInfo) private teamSectionRepository: Repository<TeamSectionInfo>,
     @InjectRepository(RoadmapSectionInfo) private roadmapSectionRepository: Repository<RoadmapSectionInfo>,
     @InjectRepository(FaqSectionInfo) private faqSectionRepository: Repository<FaqSectionInfo>,
-    @InjectRepository(ContactSectionInfo) private contactSectionRepository: Repository<ContactSectionInfo>
+    @InjectRepository(ContactSectionInfo) private contactSectionRepository: Repository<ContactSectionInfo>,
+    @InjectRepository(TokenSectionInfo) private tokenSectionRepository: Repository<TokenSectionInfo>
   ) {
 
   }
@@ -261,6 +263,37 @@ export class ICOService {
 
   async deleteContactSectionInfo(id: string) {
     let result = await this.contactSectionRepository.delete(new ObjectID(id));
+    console.log(id);
+    return result;
+  }
+
+  async getTokenSectionInfo() {
+    let documents = await this.tokenSectionRepository.find({});
+    return documents;
+  }
+
+  async addTokenSectionInfo(payload: any) {
+    const res = await this.tokenSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateTokenSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.tokenSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.tokenSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteTokenSectionInfo(id: string) {
+    let result = await this.tokenSectionRepository.delete(new ObjectID(id));
     console.log(id);
     return result;
   }
