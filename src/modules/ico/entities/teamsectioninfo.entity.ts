@@ -13,4 +13,7 @@ export class TeamSectionInfo {
 
   @Column()
   text: string;
+
+  @Column()
+  num: number;
 }
