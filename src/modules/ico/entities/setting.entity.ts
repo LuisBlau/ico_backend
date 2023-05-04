@@ -46,4 +46,7 @@ export class Setting {
 
   @Column((type) => SectionInfo)
   main: SectionInfo;
+
+  @Column((type) => SectionInfo)
+  footer: SectionInfo;
 }

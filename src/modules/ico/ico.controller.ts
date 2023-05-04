@@ -193,4 +193,29 @@ export class ICOController {
   deleteTokenSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteTokenSectionInfo(id);
   }
+
+  @Get("sections/footer")
+  getFooterSectionInfo() {
+    return this.icoService.getFooterSectionInfo();
+  }
+
+  @Post("sections/footer")
+  addFooterSectionInfo(@Body() payload: any) {
+    return this.icoService.addFooterSectionInfo(payload);
+  }
+
+  @Put("sections/footer/:id")
+  async updateFooterSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateFooterSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/footer/:id")
+  deleteFooterSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteFooterSectionInfo(id);
+  }
 }

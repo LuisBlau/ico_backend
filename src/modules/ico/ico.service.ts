@@ -12,6 +12,7 @@ import { RoadmapSectionInfo } from './entities/roadmapsectioninfo.entity';
 import { FaqSectionInfo } from './entities/faqsectioninfo.entity';
 import { ContactSectionInfo } from './entities/contactsectioninfo.entity';
 import { TokenSectionInfo } from './entities/tokensectioninfo.entity';
+import { FooterSectionInfo } from './entities/footersectioninfo.entity';
 @Injectable()
 export class ICOService {
   constructor(
@@ -21,7 +22,8 @@ export class ICOService {
     @InjectRepository(RoadmapSectionInfo) private roadmapSectionRepository: Repository<RoadmapSectionInfo>,
     @InjectRepository(FaqSectionInfo) private faqSectionRepository: Repository<FaqSectionInfo>,
     @InjectRepository(ContactSectionInfo) private contactSectionRepository: Repository<ContactSectionInfo>,
-    @InjectRepository(TokenSectionInfo) private tokenSectionRepository: Repository<TokenSectionInfo>
+    @InjectRepository(TokenSectionInfo) private tokenSectionRepository: Repository<TokenSectionInfo>,
+    @InjectRepository(FooterSectionInfo) private footerSectionRepository: Repository<FooterSectionInfo>
   ) {
 
   }
@@ -95,7 +97,12 @@ export class ICOService {
           "title" : "Initial Coin Offering",
           "subtitle" : "Crypto ICO Project",
           "detail" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolorem blanditiis ad perferendis, labore delectus dolor sit amet, adipisicing elit. "
-        }
+        },
+        "footer": {
+          "title" : "",
+          "subtitle" : "",
+          "detail" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolorem blanditiis ad perferendis, labore delectus dolor sit amet, adipisicing elit. "
+        },
       }
     }
     setting._id && (setting._id = new ObjectID(setting._id));
@@ -289,6 +296,36 @@ export class ICOService {
 
   async deleteTokenSectionInfo(id: string) {
     let result = await this.tokenSectionRepository.delete(new ObjectID(id));
+    return result;
+  }
+
+  async getFooterSectionInfo() {
+    let documents = await this.footerSectionRepository.find({});
+    return documents;
+  }
+
+  async addFooterSectionInfo(payload: any) {
+    const res = await this.footerSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateFooterSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.footerSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.footerSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteFooterSectionInfo(id: string) {
+    let result = await this.footerSectionRepository.delete(new ObjectID(id));
     return result;
   }
 }
