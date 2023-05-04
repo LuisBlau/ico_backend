@@ -13,4 +13,7 @@ export class RoadmapSectionInfo {
 
   @Column()
   monthDate: string;
+
+  @Column()
+  text: string;
 }
