@@ -139,7 +139,6 @@ export class ICOService {
 
   async deleteHowSectionInfo(id: string) {
     let result = await this.howSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 
@@ -170,7 +169,6 @@ export class ICOService {
 
   async deleteTeamSectionInfo(id: string) {
     let result = await this.teamSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 
@@ -201,7 +199,6 @@ export class ICOService {
 
   async deleteRoadmapSectionInfo(id: string) {
     let result = await this.roadmapSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 
@@ -232,7 +229,6 @@ export class ICOService {
 
   async deleteFaqSectionInfo(id: string) {
     let result = await this.faqSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 
@@ -263,7 +259,6 @@ export class ICOService {
 
   async deleteContactSectionInfo(id: string) {
     let result = await this.contactSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 
@@ -294,7 +289,6 @@ export class ICOService {
 
   async deleteTokenSectionInfo(id: string) {
     let result = await this.tokenSectionRepository.delete(new ObjectID(id));
-    console.log(id);
     return result;
   }
 }

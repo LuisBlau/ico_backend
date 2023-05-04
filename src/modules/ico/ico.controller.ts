@@ -31,7 +31,6 @@ export class ICOController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', multerOptions))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
     return `/uploads/${file.filename}`;
   }
 
