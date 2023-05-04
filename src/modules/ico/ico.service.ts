@@ -6,9 +6,13 @@ import { Repository } from 'typeorm';
 import { ObjectID } from 'mongodb';
 import { Setting } from './entities/setting.entity';
 import {SettingDTO} from './ico.dto';
+import { HowSectionInfo } from './entities/howsectioninfo.entity';
 @Injectable()
 export class ICOService {
-  constructor(@InjectRepository(Setting) private settingRepository: Repository<Setting>) {
+  constructor(
+    @InjectRepository(Setting) private settingRepository: Repository<Setting>,
+    @InjectRepository(HowSectionInfo) private howSectionRepository: Repository<HowSectionInfo>
+  ) {
 
   }
   startSale(): string {
@@ -28,7 +32,6 @@ export class ICOService {
   }
 
   async saveSetting(sectionInfo: any) {
-    console.log(sectionInfo);
     let setting = await this.settingRepository.findOne({});
     if (!setting) {
       setting = {
@@ -97,5 +100,36 @@ export class ICOService {
       return setting;
     }
     return {};
+  }
+
+  async getHowSectionInfo() {
+    let documents = await this.howSectionRepository.find({});
+    return documents;
+  }
+
+  async addHowSectionInfo(payload: any) {
+    const res = await this.howSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateHowSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.howSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.howSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteHowSectionInfo(id: string) {
+    let result = await this.howSectionRepository.delete(new ObjectID(id));
+    console.log(id);
+    return result;
   }
 }
