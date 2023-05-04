@@ -7,11 +7,13 @@ import { ObjectID } from 'mongodb';
 import { Setting } from './entities/setting.entity';
 import {SettingDTO} from './ico.dto';
 import { HowSectionInfo } from './entities/howsectioninfo.entity';
+import { TeamSectionInfo } from './entities/teamsectioninfo.entity';
 @Injectable()
 export class ICOService {
   constructor(
     @InjectRepository(Setting) private settingRepository: Repository<Setting>,
-    @InjectRepository(HowSectionInfo) private howSectionRepository: Repository<HowSectionInfo>
+    @InjectRepository(HowSectionInfo) private howSectionRepository: Repository<HowSectionInfo>,
+    @InjectRepository(TeamSectionInfo) private teamSectionRepository: Repository<TeamSectionInfo>
   ) {
 
   }
@@ -129,6 +131,37 @@ export class ICOService {
 
   async deleteHowSectionInfo(id: string) {
     let result = await this.howSectionRepository.delete(new ObjectID(id));
+    console.log(id);
+    return result;
+  }
+
+  async getTeamSectionInfo() {
+    let documents = await this.teamSectionRepository.find({});
+    return documents;
+  }
+
+  async addTeamSectionInfo(payload: any) {
+    const res = await this.teamSectionRepository.save(payload);
+    return res;
+  }
+
+  async updateTeamSectionInfo(id: string, payload: any) {
+    let query = {
+      where: {
+        _id: new ObjectID(id),
+      },
+    };
+    let document = await this.teamSectionRepository.findOne(query);
+    if (document) {
+      const res = await this.teamSectionRepository.save({...payload, _id: document._id});
+      return res;
+    }
+
+    return null;
+  }
+
+  async deleteTeamSectionInfo(id: string) {
+    let result = await this.teamSectionRepository.delete(new ObjectID(id));
     console.log(id);
     return result;
   }

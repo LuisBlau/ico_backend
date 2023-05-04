@@ -69,4 +69,29 @@ export class ICOController {
   deleteHowSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteHowSectionInfo(id);
   }
+
+  @Get("sections/team")
+  getTeamSectionInfo() {
+    return this.icoService.getTeamSectionInfo();
+  }
+
+  @Post("sections/team")
+  addTeamSectionInfo(@Body() payload: any) {
+    return this.icoService.addTeamSectionInfo(payload);
+  }
+
+  @Put("sections/team/:id")
+  async updateTeamSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateTeamSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/team/:id")
+  deleteTeamSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteTeamSectionInfo(id);
+  }
 }
