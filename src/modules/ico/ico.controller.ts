@@ -94,4 +94,29 @@ export class ICOController {
   deleteTeamSectionInfo(@Param('id') id: string) {
     return this.icoService.deleteTeamSectionInfo(id);
   }
+
+  @Get("sections/roadmap")
+  getRoadmapSectionInfo() {
+    return this.icoService.getRoadmapSectionInfo();
+  }
+
+  @Post("sections/roadmap")
+  addRoadmapSectionInfo(@Body() payload: any) {
+    return this.icoService.addRoadmapSectionInfo(payload);
+  }
+
+  @Put("sections/roadmap/:id")
+  async updateRoadmapSectionInfo(@Param('id') id: string, @Body() payload: any, @Res() res: Response) {
+    let result = await this.icoService.updateRoadmapSectionInfo(id, payload);
+    if (!result) {
+      res.status(HttpStatus.BAD_REQUEST).send();
+    } else {
+      res.status(HttpStatus.OK).json(result);
+    }
+  }
+
+  @Delete("sections/roadmap/:id")
+  deleteRoadmapSectionInfo(@Param('id') id: string) {
+    return this.icoService.deleteRoadmapSectionInfo(id);
+  }
 }
