@@ -7,6 +7,8 @@ export class SectionInfo {
   subtitle: string;
   @Column()
   detail: string;
+  @Column()
+  file?: string;
 }
 
 @Entity({name: "settings"})
