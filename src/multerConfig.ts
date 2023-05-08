@@ -17,7 +17,7 @@ export const multerOptions = {
     },
     // Check the mimetypes to allow for upload
     fileFilter: (req: any, file: any, cb: any) => {
-        if (file.mimetype.match(/\/(jpg|jpeg|png|gif|docx|doc|pdf|txt|rtf|xls|xlsx)$/)) {
+        if (file.mimetype.match(/\/(jpg|jpeg|png|gif|docx|doc|pdf|txt|rtf|xls|xlsx|ico)$/)) {
             // Allow storage of file
             cb(null, true);
         } else {

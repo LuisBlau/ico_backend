@@ -19,6 +19,9 @@ export class Setting {
   @Column()
   logo: string;
 
+  @Column()
+  favIcon: string;
+
   @Column((type) => SectionInfo)
   about: SectionInfo;
 

@@ -48,6 +48,7 @@ export class ICOService {
     if (!setting) {
       setting = {
         "logo" : "",
+        "favIcon" : "",
         "about" : {
             "title" : "About Crypto eComerce",
             "subtitle" : "Decenteralized Crypto eComerce",
