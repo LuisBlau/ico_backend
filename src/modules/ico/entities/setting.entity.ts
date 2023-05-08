@@ -11,6 +11,21 @@ export class SectionInfo {
   file?: string;
 }
 
+export class FooterInfo {
+  @Column()
+  detail: string;
+  @Column()
+  facebook?: string;
+  @Column()
+  twitter?: string;
+  @Column()
+  googleplus?: string;
+  @Column()
+  instagram?: string;
+  @Column()
+  linkedin?: string;
+}
+
 @Entity({name: "settings"})
 export class Setting {
   @ObjectIdColumn()
@@ -52,6 +67,6 @@ export class Setting {
   @Column((type) => SectionInfo)
   main: SectionInfo;
 
-  @Column((type) => SectionInfo)
-  footer: SectionInfo;
+  @Column((type) => FooterInfo)
+  footer: FooterInfo;
 }

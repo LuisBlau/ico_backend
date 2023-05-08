@@ -100,8 +100,6 @@ export class ICOService {
           "detail" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolorem blanditiis ad perferendis, labore delectus dolor sit amet, adipisicing elit. "
         },
         "footer": {
-          "title" : "",
-          "subtitle" : "",
           "detail" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolorem blanditiis ad perferendis, labore delectus dolor sit amet, adipisicing elit. "
         },
       }
