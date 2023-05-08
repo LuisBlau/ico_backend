@@ -24,6 +24,21 @@ export class FooterSectionInfo {
   text5: string;
 
   @Column()
+  link1: string;
+
+  @Column()
+  link2: string;
+
+  @Column()
+  link3: string;
+
+  @Column()
+  link4: string;
+
+  @Column()
+  link5: string;
+
+  @Column()
   classBlock: string;
 
   @Column()
